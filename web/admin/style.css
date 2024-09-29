@@ -1,0 +1,19 @@
+.bg-custom
+{
+    background-color: #303f9f;
+}
+.navbar .nav-item:hover .nav-link
+{
+    background-color: white;
+    color: blue;
+    border-radius: 20px;
+}
+.background-img
+{
+    background-image: url("image/book_header.jpg");
+    height: 80vh;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
