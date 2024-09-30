@@ -19,9 +19,9 @@ import java.util.logging.Logger;
  */
 public class DAOBook extends DBConnect {
 
-   public int AddBook(Book book) {
-    int n = 0;
-    String sql = "INSERT INTO [books]\n"
+    public int AddBook(Book book) {
+        int n = 0;
+        String sql = "INSERT INTO [books]\n"
                 + "           ([bookName]\n"
                 + "           ,[author]\n"
                 + "           ,[price]\n"
@@ -30,21 +30,21 @@ public class DAOBook extends DBConnect {
                 + "           ,[photo]\n"
                 + "           ,[email])\n"
                 + "     VALUES(?,?,?,?,?,?,?)";
-    // Use try-with-resources to ensure PreparedStatement is closed properly
-    try (PreparedStatement pre = conn.prepareStatement(sql)) {
-        pre.setString(1, book.getBookName());
-        pre.setString(2, book.getAuthor());
-        pre.setDouble(3, book.getPrice());
-        pre.setString(4, book.getBookCategory());
-        pre.setString(5, book.getStatus());
-        pre.setString(6, book.getPhoto());
-        pre.setString(7, book.getEmail());        
-        n = pre.executeUpdate();
-    } catch (SQLException ex) {
-        System.out.print(ex.getMessage());
+        // Use try-with-resources to ensure PreparedStatement is closed properly
+        try (PreparedStatement pre = conn.prepareStatement(sql)) {
+            pre.setString(1, book.getBookName());
+            pre.setString(2, book.getAuthor());
+            pre.setDouble(3, book.getPrice());
+            pre.setString(4, book.getBookCategory());
+            pre.setString(5, book.getStatus());
+            pre.setString(6, book.getPhoto());
+            pre.setString(7, book.getEmail());
+            n = pre.executeUpdate();
+        } catch (SQLException ex) {
+            System.out.print(ex.getMessage());
+        }
+        return n;
     }
-    return n;
-}
 
     public List<Book> getAllBooks(String sql) {
         List<Book> vector = new Vector<>();
@@ -53,15 +53,15 @@ public class DAOBook extends DBConnect {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
             ResultSet rs = state.executeQuery(sql);
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                Book book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                Book book = new Book();
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
             }
         } catch (SQLException ex) {
@@ -79,15 +79,14 @@ public class DAOBook extends DBConnect {
             pre.setInt(1, id);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập emailF
             }
         } catch (SQLException ex) {
             Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,15 +106,15 @@ public class DAOBook extends DBConnect {
             pre.setString(4, "Active");
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                Book book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                Book book = new Book();
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
             }
         } catch (SQLException ex) {
@@ -154,15 +153,15 @@ public class DAOBook extends DBConnect {
             pre.setDouble(2, maxPrice);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                Book book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                Book book = new Book();
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
             }
         } catch (SQLException ex) {
@@ -170,7 +169,6 @@ public class DAOBook extends DBConnect {
         }
         return vector;
     }
-    
 
     public List<Book> getOldBook(String email, String cate) {
         List<Book> vector = new ArrayList<>();
@@ -182,15 +180,15 @@ public class DAOBook extends DBConnect {
             pre.setString(2, email);
             ResultSet rs = pre.executeQuery();
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String mail = rs.getString(8);
-                Book book = new Book(bookId, bookname, author, price, bookCategory, status, img, mail);
+                Book book = new Book();
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
             }
         } catch (SQLException ex) {
@@ -259,15 +257,14 @@ public class DAOBook extends DBConnect {
             ResultSet rs = st.executeQuery();
             int i = 1;
             while (rs.next() && i <= 4) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
                 i++;
             }
@@ -287,15 +284,14 @@ public class DAOBook extends DBConnect {
             st.setString(2, "Active");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
             }
         } catch (SQLException e) {
@@ -314,15 +310,14 @@ public class DAOBook extends DBConnect {
             ResultSet rs = st.executeQuery();
             int i = 1;
             while (rs.next() && i <= 4) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
                 i++;
             }
@@ -341,15 +336,14 @@ public class DAOBook extends DBConnect {
             st.setString(1, "Active");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
             }
         } catch (SQLException e) {
@@ -369,15 +363,14 @@ public class DAOBook extends DBConnect {
             ResultSet rs = st.executeQuery();
             int i = 1;
             while (rs.next() && i <= 4) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
                 i++;
             }
@@ -397,15 +390,14 @@ public class DAOBook extends DBConnect {
             st.setString(2, "Active");
             ResultSet rs = st.executeQuery();
             while (rs.next()) {
-                int bookId = rs.getInt(1);
-                String bookname = rs.getString(2);
-                String author = rs.getString(3);
-                double price = rs.getDouble(4);
-                String bookCategory = rs.getString(5);
-                String status = rs.getString(6);
-                String img = rs.getString(7);
-                String email = rs.getString(8);
-                book = new Book(bookId, bookname, author, price, bookCategory, status, img, email);
+                book.setBookId(rs.getInt(1));           // Thiết lập bookId
+                book.setBookName(rs.getString(2));      // Thiết lập bookName
+                book.setAuthor(rs.getString(3));        // Thiết lập author
+                book.setPrice(rs.getDouble(4));         // Thiết lập price
+                book.setBookCategory(rs.getString(5));  // Thiết lập bookCategory
+                book.setStatus(rs.getString(6));        // Thiết lập status
+                book.setPhoto(rs.getString(7));         // Thiết lập img/photo
+                book.setEmail(rs.getString(8));         // Thiết lập email
                 vector.add(book);
             }
         } catch (SQLException e) {
