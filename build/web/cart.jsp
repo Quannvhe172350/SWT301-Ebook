@@ -200,8 +200,8 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Payment Method</label>
-                                    <select class="form-control" name="payment">
+                                    <label for="paymentMethod">Payment Method</label>
+                                    <select class="form-control" id="paymentMethod" name="payment">
                                         <option value="noselect">--Select--</option>
                                         <option value="Cod">Cash On Delivery</option>
                                         <option value="Visa">Pay Visa</option>
