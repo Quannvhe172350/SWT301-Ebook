@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.DAOBook,entity.Book,java.util.Vector" %>
 <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
@@ -42,7 +42,7 @@
             <% for(Book b: bookList) {%>
             <tr>
                 <th scope="row"><%=b.getBookId()%></th>
-                <td><img src="../book/<%=b.getPhoto()%>" style="width: 50px;height: 50px"></td>
+                <td><img src="../book/<%=b.getPhoto()%>" style="width: 50px;height: 50px" alt="Mô tả chức năng của nút"></td>
                 <td><%=b.getBookName()%></td>
                 <td><%=b.getAuthor()%></td>
                 <td><%=b.getPrice()%></td>

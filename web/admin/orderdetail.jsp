@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ page import="model.DAOOrderItem,java.sql.ResultSet" %>
 <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Order Details</title>

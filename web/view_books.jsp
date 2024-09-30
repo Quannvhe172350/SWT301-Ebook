@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="model.DAOBook,entity.Book,entity.User" %>
 <!DOCTYPE html>
-<html>
+<html lang="">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="all_component/allCss.jsp" %>
