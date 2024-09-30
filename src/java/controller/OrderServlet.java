@@ -46,7 +46,7 @@ public class OrderServlet extends HttpServlet {
             if (user != null) {
                 String fulladd = getFullAddress(request);
                 String payment = request.getParameter("payment");
-                int orderId = createOrder(session, user, fulladd, payment);
+                int orderId = createOrder( user, fulladd, payment);
                 
                 if (orderId > 0) {
                     handleCartItems(session, orderId);
@@ -68,7 +68,7 @@ private String getFullAddress(HttpServletRequest request) {
     return address + " " + landmark + " " + city + " " + state + " " + zipcode;
 }
 
-private int createOrder(HttpSession session, User user, String fulladd, String payment) {
+private int createOrder( User user, String fulladd, String payment) {
     DAOOrder dao = new DAOOrder();
     Order o = new Order();
     o.setUserId(user.getId());

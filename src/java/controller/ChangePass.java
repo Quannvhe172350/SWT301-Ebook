@@ -43,24 +43,24 @@ public class ChangePass extends HttpServlet {
             String repass = request.getParameter("repassword");
             DAOUser dao = new DAOUser();
             int check = dao.checkUserPassword(u.getId(), pass);
-            String FAILED_MSG = "failedMsg";
-             String SUCCESS_MSG = "successMsg";
+            String falledMsg = "failedMsg";
+             String successMsg = "successMsg";
             if (check > 0) {
             if (newpass.equals(repass)) {
                 int n = dao.setPassword(u.getId(), newpass);
                 if (n > 0) {
-                    session.setAttribute(SUCCESS_MSG, "Update Password Successfully");
+                    session.setAttribute(successMsg, "Update Password Successfully");
                     response.sendRedirect("changepassword.jsp");
                 } else {
-                    session.setAttribute(FAILED_MSG, "Something wrong on server....");
+                    session.setAttribute(falledMsg, "Something wrong on server....");
                     response.sendRedirect("changepassword.jsp");
                 }
             } else {
-                session.setAttribute(FAILED_MSG, "Please check repassword");
+                session.setAttribute(falledMsg, "Please check repassword");
                 response.sendRedirect("changepassword.jsp");
             }
         } else {
-            session.setAttribute(FAILED_MSG, "Please check password right");
+            session.setAttribute(falledMsg, "Please check password right");
             response.sendRedirect("changepassword.jsp");
         }
         }
