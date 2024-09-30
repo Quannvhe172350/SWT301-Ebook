@@ -19,10 +19,9 @@ import java.util.logging.Logger;
  */
 public class DAOBook extends DBConnect {
 
-    public int AddBook(Book book) {
-        int n = 0;
-        PreparedStatement pre;
-        String sql = "INSERT INTO [books]\n"
+   public int AddBook(Book book) {
+    int n = 0;
+    String sql = "INSERT INTO [books]\n"
                 + "           ([bookName]\n"
                 + "           ,[author]\n"
                 + "           ,[price]\n"
@@ -31,21 +30,21 @@ public class DAOBook extends DBConnect {
                 + "           ,[photo]\n"
                 + "           ,[email])\n"
                 + "     VALUES(?,?,?,?,?,?,?)";
-        try {
-            pre = conn.prepareStatement(sql);
-            pre.setString(1, book.getBookName());
-            pre.setString(2, book.getAuthor());
-            pre.setDouble(3, book.getPrice());
-            pre.setString(4, book.getBookCategory());
-            pre.setString(5, book.getStatus());
-            pre.setString(6, book.getPhoto());
-            pre.setString(7, book.getEmail());
-            n = pre.executeUpdate();
-        } catch (SQLException ex) {
-            System.out.print(ex.getMessage());
-        }
-        return n;
+    // Use try-with-resources to ensure PreparedStatement is closed properly
+    try (PreparedStatement pre = conn.prepareStatement(sql)) {
+        pre.setString(1, book.getBookName());
+        pre.setString(2, book.getAuthor());
+        pre.setDouble(3, book.getPrice());
+        pre.setString(4, book.getBookCategory());
+        pre.setString(5, book.getStatus());
+        pre.setString(6, book.getPhoto());
+        pre.setString(7, book.getEmail());        
+        n = pre.executeUpdate();
+    } catch (SQLException ex) {
+        System.out.print(ex.getMessage());
     }
+    return n;
+}
 
     public Vector<Book> getAllBooks(String sql) {
         Vector<Book> vector = new Vector<>();
