@@ -25,13 +25,13 @@ public class DBConnect {
         this("jdbc:sqlserver://localhost:1433;databaseName=EBook", "sa", "sa");
     }
 
-    public DBConnect(String url, String name, String password) {
+  public DBConnect(String url, String name, String password) {
         try {
-            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            conn = DriverManager.getConnection(url ,name, password);
-            System.out.print("connected");
-        } catch (ClassNotFoundException | SQLException ex) {
-            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, null, ex);
+            // Class.forName is no longer needed for JDBC 4.0+
+            conn = DriverManager.getConnection(url, name, password);
+            Logger.getLogger(DBConnect.class.getName()).log(Level.INFO, "Connected to the database.");
+        } catch (SQLException ex) {
+            Logger.getLogger(DBConnect.class.getName()).log(Level.SEVERE, "Connection failed", ex);
         }
     }
 

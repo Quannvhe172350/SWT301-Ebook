@@ -41,7 +41,7 @@ public class DAOBook extends DBConnect {
             pre.setString(7, book.getEmail());
             n = pre.executeUpdate();
         } catch (SQLException ex) {
-            System.out.print(ex.getMessage());
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, ex);
         }
         return n;
     }
@@ -227,8 +227,8 @@ public class DAOBook extends DBConnect {
         try {
             Statement state = conn.createStatement();
             n = state.executeUpdate(sql);
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, ex);
         }
         return n;
     }
@@ -241,7 +241,7 @@ public class DAOBook extends DBConnect {
             preparedStatement.setString(2, email);
             n = preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, e);
         }
         return n;
     }
@@ -269,7 +269,7 @@ public class DAOBook extends DBConnect {
                 i++;
             }
         } catch (SQLException e) {
-            System.out.println(e);
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
     }
@@ -295,7 +295,7 @@ public class DAOBook extends DBConnect {
                 vector.add(book);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
     }
@@ -322,7 +322,7 @@ public class DAOBook extends DBConnect {
                 i++;
             }
         } catch (SQLException e) {
-            System.out.println(e);
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
     }
@@ -347,7 +347,7 @@ public class DAOBook extends DBConnect {
                 vector.add(book);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
     }
@@ -375,7 +375,7 @@ public class DAOBook extends DBConnect {
                 i++;
             }
         } catch (SQLException e) {
-            System.out.println(e);
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
     }
@@ -401,7 +401,7 @@ public class DAOBook extends DBConnect {
                 vector.add(book);
             }
         } catch (SQLException e) {
-            System.out.println(e);
+           Logger.getLogger(DAOBook.class.getName()).log(Level.SEVERE, null, e);
         }
         return vector;
     }
