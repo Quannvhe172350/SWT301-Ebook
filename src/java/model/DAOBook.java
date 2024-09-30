@@ -47,7 +47,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getAllBooks(String sql) {
-        List<Book> vector = new Vector<>();
+        List<Book> vector = new ArrayList<>();
         Statement state;
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -71,7 +71,7 @@ public class DAOBook extends DBConnect {
     }
 
     public Book getBookById(int id) {
-        Book book = null;
+        Book book = new Book();
         String sql = "select * from books where bookId = ?";
         PreparedStatement pre;
         try {
@@ -95,7 +95,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getBookBySearch(String search) {
-        List<Book> vector = new Vector<>();
+        List<Book> vector = new ArrayList<>();
         String sql = "select * from books where bookName LIKE ? OR author LIKE ? OR bookCategory LIKE ? AND status = ?";
         PreparedStatement pre;
         try {
@@ -124,7 +124,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getBookByPrice(String priceRange) {
-        List<Book> vector = new Vector<>();
+        List<Book> vector = new ArrayList<>();
         String sql = "select * from books where price >= ? AND price <=?";
         PreparedStatement pre;
         double minPrice = 0;
@@ -247,7 +247,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getNewBook() {
-        Book book = null;
+        Book book = new Book();
         String sql = "Select * from books where bookCategory = ? and status = ?";
         List<Book> vector = new ArrayList<>();
         try {
@@ -275,7 +275,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getAllNewBook() {
-        Book book = null;
+        Book book = new Book();
         String sql = "Select * from books where bookCategory = ? and status = ?";
         List<Book> vector = new ArrayList<>();
         try {
@@ -301,7 +301,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getRecentBook() {
-        Book book = null;
+        Book book = new Book();
         String sql = "Select * from books where status = ? order by bookId DESC";
         List<Book> vector = new ArrayList<>();
         try {
@@ -328,7 +328,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getAllRecentBook() {
-        Book book = null;
+        Book book = new Book();
         String sql = "Select * from books where status = ? order by bookId DESC";
         List<Book> vector = new ArrayList<>();
         try {
@@ -353,7 +353,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getOldBook() {
-        Book book = null;
+        Book book = new Book();
         String sql = "Select * from books where bookCategory = ? and status = ?";
         List<Book> vector = new ArrayList<>();
         try {
@@ -381,7 +381,7 @@ public class DAOBook extends DBConnect {
     }
 
     public List<Book> getAllOldBook() {
-        Book book = null;
+        Book book = new Book();
         String sql = "Select * from books where bookCategory = ? and status = ?";
         List<Book> vector = new ArrayList<>();
         try {
