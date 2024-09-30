@@ -31,7 +31,7 @@
         DAOOrder dao = new DAOOrder();
         ResultSet rs = dao.getResultSet(sql);
     %>
-    <p class="text-center text-success">${param.message}</p>
+    <p class="text-center text-success">thong bao cu the</p>
     <div class="container p-1">
         <h3 class="text-center text-primary ">
             Your Order
