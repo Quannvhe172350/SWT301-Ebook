@@ -53,7 +53,7 @@ public class AddBooksServlet extends HttpServlet {
             int n = dao.AddBook(book);
             if (n > 0) {
                 String path = getServletContext().getRealPath("") + "book";
-                File file = new File(path);
+//                File file = new File(path);
                 part.write(path + File.separator + filename);
                 session.setAttribute("successMsg", "Book Add Successfully");
                 response.sendRedirect("admin/addbooks.jsp");

@@ -12,14 +12,14 @@ public class Cart {
         private int cartId;
         private int bookId;
         private int userId;
-        private double list_price;
+        private double listPrice;
         private String bookName;
         private String author;
         private int quantity;
 
-    public Cart( int bookId,String bookName, String author,double list_price, int quantity) {
+    public Cart( int bookId,String bookName, String author,double listPrice, int quantity) {
         this.bookId=bookId;
-        this.list_price = list_price;
+        this.listPrice = listPrice;
         this.bookName = bookName;
         this.author = author;
         this.quantity = quantity;
@@ -27,7 +27,7 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart{" + "cartId=" + cartId + ", bookId=" + bookId + ", userId=" + userId + ", list_price=" + list_price + ", bookName=" + bookName + ", author=" + author + ", quantity=" + quantity + '}';
+        return "Cart{" + "cartId=" + cartId + ", bookId=" + bookId + ", userId=" + userId + ", listPrice=" + listPrice + ", bookName=" + bookName + ", author=" + author + ", quantity=" + quantity + '}';
     }
 
 
@@ -40,10 +40,10 @@ public class Cart {
         this.quantity = quantity;
     }
 
-    public Cart(int bookId, int userId, double list_price, String bookName, String author) {
+    public Cart(int bookId, int userId, double listPrice, String bookName, String author) {
         this.bookId = bookId;
         this.userId = userId;
-        this.list_price = list_price;
+        this.listPrice = listPrice;
         this.bookName = bookName;
         this.author = author;
     }
@@ -76,12 +76,12 @@ public class Cart {
         this.userId = userId;
     }
 
-    public double getList_price() {
-        return list_price;
+    public double getListPrice() {
+        return listPrice;
     }
 
-    public void setList_price(double list_price) {
-        this.list_price = list_price;
+    public void setListPrice(double listPrice) {
+        this.listPrice = listPrice;
     }
 
     public String getBookName() {

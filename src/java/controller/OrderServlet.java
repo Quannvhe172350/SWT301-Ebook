@@ -88,7 +88,7 @@ private void handleCartItems(HttpSession session, int orderId) {
             orderItem.setOrderId(orderId);
             orderItem.setBookId(cartItem.getBookId());
             orderItem.setQuantity(cartItem.getQuantity());
-            orderItem.setListPrice(cartItem.getList_price());
+            orderItem.setListPrice(cartItem.getListPrice());
             dao2.createOrderItem(orderItem);
             session.removeAttribute(key);
         }
