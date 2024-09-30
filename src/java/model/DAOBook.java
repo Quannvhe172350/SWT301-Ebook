@@ -9,7 +9,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
+import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -46,8 +46,8 @@ public class DAOBook extends DBConnect {
     return n;
 }
 
-    public Vector<Book> getAllBooks(String sql) {
-        Vector<Book> vector = new Vector<>();
+    public List<Book> getAllBooks(String sql) {
+        List<Book> vector = new Vector<>();
         Statement state;
         try {
             state = conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_UPDATABLE);
@@ -95,8 +95,8 @@ public class DAOBook extends DBConnect {
         return book;
     }
 
-    public Vector<Book> getBookBySearch(String search) {
-        Vector<Book> vector = new Vector<>();
+    public List<Book> getBookBySearch(String search) {
+        List<Book> vector = new Vector<>();
         String sql = "select * from books where bookName LIKE ? OR author LIKE ? OR bookCategory LIKE ? AND status = ?";
         PreparedStatement pre;
         try {
@@ -124,8 +124,8 @@ public class DAOBook extends DBConnect {
         return vector;
     }
 
-    public Vector<Book> getBookByPrice(String priceRange) {
-        Vector<Book> vector = new Vector<>();
+    public List<Book> getBookByPrice(String priceRange) {
+        List<Book> vector = new Vector<>();
         String sql = "select * from books where price >= ? AND price <=?";
         PreparedStatement pre;
         double minPrice = 0;
@@ -172,8 +172,8 @@ public class DAOBook extends DBConnect {
     }
     
 
-    public Vector<Book> getOldBook(String email, String cate) {
-        Vector<Book> vector = new Vector<Book>();
+    public List<Book> getOldBook(String email, String cate) {
+        List<Book> vector = new ArrayList<>();
         String sql = "select * from books where bookCategory = ? and email = ?";
         PreparedStatement pre;
         try {
@@ -248,10 +248,10 @@ public class DAOBook extends DBConnect {
         return n;
     }
 
-    public Vector<Book> getNewBook() {
+    public List<Book> getNewBook() {
         Book book = null;
         String sql = "Select * from books where bookCategory = ? and status = ?";
-        Vector<Book> vector = new Vector<Book>();
+        List<Book> vector = new ArrayList<>();
         try {
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, "New");
@@ -277,10 +277,10 @@ public class DAOBook extends DBConnect {
         return vector;
     }
 
-    public Vector<Book> getAllNewBook() {
+    public List<Book> getAllNewBook() {
         Book book = null;
         String sql = "Select * from books where bookCategory = ? and status = ?";
-        Vector<Book> vector = new Vector<Book>();
+        List<Book> vector = new ArrayList<>();
         try {
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, "New");
@@ -304,10 +304,10 @@ public class DAOBook extends DBConnect {
         return vector;
     }
 
-    public Vector<Book> getRecentBook() {
+    public List<Book> getRecentBook() {
         Book book = null;
         String sql = "Select * from books where status = ? order by bookId DESC";
-        Vector<Book> vector = new Vector<Book>();
+        List<Book> vector = new ArrayList<>();
         try {
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, "Active");
@@ -332,10 +332,10 @@ public class DAOBook extends DBConnect {
         return vector;
     }
 
-    public Vector<Book> getAllRecentBook() {
+    public List<Book> getAllRecentBook() {
         Book book = null;
         String sql = "Select * from books where status = ? order by bookId DESC";
-        Vector<Book> vector = new Vector<Book>();
+        List<Book> vector = new ArrayList<>();
         try {
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, "Active");
@@ -358,10 +358,10 @@ public class DAOBook extends DBConnect {
         return vector;
     }
 
-    public Vector<Book> getOldBook() {
+    public List<Book> getOldBook() {
         Book book = null;
         String sql = "Select * from books where bookCategory = ? and status = ?";
-        Vector<Book> vector = new Vector<Book>();
+        List<Book> vector = new ArrayList<>();
         try {
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, "Old");
@@ -387,10 +387,10 @@ public class DAOBook extends DBConnect {
         return vector;
     }
 
-    public Vector<Book> getAllOldBook() {
+    public List<Book> getAllOldBook() {
         Book book = null;
         String sql = "Select * from books where bookCategory = ? and status = ?";
-        Vector<Book> vector = new Vector<Book>();
+        List<Book> vector = new ArrayList<>();
         try {
             PreparedStatement st = conn.prepareStatement(sql);
             st.setString(1, "Old");
